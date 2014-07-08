@@ -1,6 +1,6 @@
 Revision history for Data-Sah-Normalize
 
-0.01     2014-07-08 (SHARYANTO) (not yet released)
+0.01     2014-07-08 (SHARYANTO)
 
          - First release, split from Data-Sah to provide something minimal for
            those that need normalizing functionality only.

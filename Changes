@@ -1,5 +1,14 @@
 Revision history for Data-Sah-Normalize
 
+0.03    2015-04-24 (PERLANCAR)
+
+        - Add prototype to normalize_schema($) to catch common error like
+          normalize_schema(int => min=>1) when it should be
+          normalize_schema([int => min=>1]).
+
+        - Add benchmark devscript.
+
+
 0.02    2015-04-24 (PERLANCAR)
 
 	- No functional changes.

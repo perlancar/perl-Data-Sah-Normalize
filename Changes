@@ -1,5 +1,14 @@
 Revision history for Data-Sah-Normalize
 
+0.02    2015-04-24 (PERLANCAR)
+
+	- No functional changes.
+
+	- Mark compliance to DefHash 1.0.10 and add test (code to support
+	  'prop(LANG)' has been previously added but not yet
+	  documented/tested).
+
+
 0.01     2014-07-08 (SHARYANTO)
 
          - First release, split from Data-Sah to provide something minimal for

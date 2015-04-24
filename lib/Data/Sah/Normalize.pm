@@ -29,7 +29,7 @@ our $funcset_re     = qr/\A(?:[A-Za-z_]\w*::)*[A-Za-z_]\w*\z/;
 our $compiler_re    = qr/\A[A-Za-z_]\w*\z/;
 our $clause_attr_on_empty_clause_re = qr/\A(?:\.[A-Za-z_]\w*)+\z/;
 
-sub normalize_clset {
+sub normalize_clset($;$) {
     my ($clset0, $opts) = @_;
     $opts //= {};
 
@@ -130,8 +130,8 @@ sub normalize_clset {
     $clset;
 }
 
-sub normalize_schema {
-    my ($s) = @_;
+sub normalize_schema($) {
+    my $s = shift;
 
     my $ref = ref($s);
     if (!defined($s)) {

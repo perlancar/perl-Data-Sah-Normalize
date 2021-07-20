@@ -1,11 +1,13 @@
 package Data::Sah::Normalize;
 
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
+
 use 5.010001;
 use strict;
 use warnings;
-
-# DATE
-# VERSION
 
 require Exporter;
 our @ISA       = qw(Exporter);
@@ -143,7 +145,7 @@ sub normalize_schema($) {
         my $has_req = $s =~ s/\*\z//;
         $s =~ $type_re or die "Invalid type syntax $s, please use ".
             "letter/digit/underscore only";
-        return [$s, $has_req ? {req=>1} : {}, {}];
+        return [$s, $has_req ? {req=>1} : {}];
 
     } elsif ($ref eq 'ARRAY') {
 
@@ -181,11 +183,11 @@ sub normalize_schema($) {
         if (defined $extras) {
             die "For array form with 3 elements, extras must be hash"
                 unless ref($extras) eq 'HASH';
-            die "'def' in extras must be a hash"
-                if exists $extras->{def} && ref($extras->{def}) ne 'HASH';
-            return [$t, $clset, { %{$extras} }];
+            die "Extras must be empty hashref (Sah 0.9.47)" if keys %$extras;
+            # we remove extras to comply with Sah 0.9.47+
+            return [$t, $clset];
         } else {
-            return [$t, $clset, {}];
+            return [$t, $clset];
         }
     }
 
@@ -200,7 +202,7 @@ sub normalize_schema($) {
  use Data::Sah::Normalize qw(normalize_clset normalize_schema);
 
  my $nclset = normalize_clset({'!a'=>1}); # -> {a=>1, 'a.op'=>'not'}
- my $nsch   = normalize_schema("int");    # -> ["int", {}, {}]
+ my $nsch   = normalize_schema("int");    # -> ["int", {}]
 
 
 =head1 DESCRIPTION
@@ -223,8 +225,8 @@ C<of>).
 
 Normalize a Sah schema (scalar or array). Return an array. Produce a 2-level
 copy of schema, so it's safe to add/delete/modify the normalized schema's clause
-set and extras (but clause set's and extras' values are still references to the
-original). Die on failure.
+set, but clause set's values are still references to the original. Die on
+failure.
 
 TODO: recursively normalize clause which contains sah clauses (e.g. C<of>).
 

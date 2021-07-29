@@ -1,3 +1,8 @@
+0.051   2021-07-29  Released-By: PERLANCAR
+
+        - Mark as non-developer release.
+
+
 0.050_001 2021-07-20  Released-By: PERLANCAR; Backward-Incompatible: yes; Developer-Release: yes
 
           - [incompatible change] Extras part are now removed to better comply
